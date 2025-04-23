@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COBOL to Python Converter</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 2em; max-width: 900px; margin: auto; }
+        textarea { width: 100%; height: 200px; font-family: monospace; }
+        pre { background: #f4f4f4; padding: 1em; overflow-x: auto; }
+        input[type="submit"] { margin-top: 1em; padding: 0.5em 1em; }
+    </style>
+</head>
+<body>
+    <h1>COBOL to Python Converter</h1>
+    <form method="post">
+        <label for="cobol_code">Enter COBOL Code:</label><br>
+        <textarea name="cobol_code" required>{{ cobol_code or '' }}</textarea><br>
+        <input type="submit" value="Convert">
+    </form>
+
+    {% if python_code %}
+        <h2>Converted Python Code:</h2>
+        <pre>{{ python_code }}</pre>
+    {% endif %}
+</body>
+</html>

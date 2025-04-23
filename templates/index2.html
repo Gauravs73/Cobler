@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNOWBOT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 15px;
+        }
+        #responseBox {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Chatbot</h2>
+    <div class="form-group">
+        <label for="user_input">Enter your query:</label>
+        <textarea id="user_input"></textarea>
+    </div>
+    <button id="submit_btn">Submit</button>
+    <div class="form-group">
+        <label>Chatbot Response:</label>
+        <div id="responseBox"></div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("submit_btn").addEventListener("click", async function () {
+        const userInput = document.getElementById("user_input").value;
+        
+        const response = await fetch('/createinc', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ user_input: userInput }),
+        });
+        
+        const data = await response.json();
+        document.getElementById("responseBox").innerText = data.response;
+    });
+</script>
+
+</body>
+</html>
